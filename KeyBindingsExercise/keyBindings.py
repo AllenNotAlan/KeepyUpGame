@@ -25,7 +25,19 @@ ball.speed(0)
 ball.goto(0,200)
 ball.dy = -0.15
 ball.dx = -0.15
+b = ball.pos()
 
+
+xball = 0
+yball = 0
+
+pen = turtle.Turtle()
+pen.speed(0)
+pen.color("white")
+pen.penup()
+pen.hideturtle()
+pen.goto(0,260)
+pen.write("x:, y:".format(xball, yball), align="center", font=("Courier", 24, "normal"))
 
 #gravity
 gravity = 0.0001
@@ -35,29 +47,31 @@ gravity = 0.0001
 
 def objectUp():
     y = __object__.ycor()
-    y += 10
+    y += 20
     __object__.sety(y)
 
 def objectDown():
     y = __object__.ycor()
-    y -= 10
+    y -= 20
     __object__.sety(y)
 
 def objectRight():
     x = __object__.xcor()
-    x += 10
+    x += 20
     __object__.setx(x)
 
 def objectLeft():
     x = __object__.xcor()
-    x -= 10
+    x -= 20
     __object__.setx(x)
 
-def jump():
-    y = __object__.ycor()
-    y += 20
-    y -= 10
-    __object__.sety(y)
+
+# def isCollision(ball,__object__):
+
+#     if (ball.xcor() >= (__object__.xcor() - 20)) and (ball.xcor() <= (__object__.xcor() + 20)) and (ball.ycor() >= (__object__.ycor()-20)) and (ball.ycor() <= (__object__.ycor()+20)):
+#         return True
+#     else:
+#         return False
 
 
 #key bindings
@@ -67,11 +81,11 @@ window.onkeypress(objectUp, "w")
 window.onkeypress(objectDown, "s")
 window.onkeypress(objectRight, "d")
 window.onkeypress(objectLeft, "a")
-window.onkeypress(jump, "e")
 
 
 #main loop
 while True:
+
     window.update()
 
     ball.dy -= gravity
@@ -93,3 +107,6 @@ while True:
     if ball.xcor() < -390:
         ball.setx(-390)
         ball.dx *= -1 #this reverses the ball direction
+
+    if (ball.xcor() >= (__object__.xcor() - 40)) and (ball.xcor() <= (__object__.xcor() + 40)) and (ball.ycor() >= (__object__.ycor()-20)) and (ball.ycor() <= (__object__.ycor()+20)):
+        ball.dy *=-1
