@@ -32,13 +32,16 @@ b = ball.pos()
 xball = 0
 yball = 0
 
+player_score = 0
+
 pen = turtle.Turtle()
 pen.speed(0)
 pen.color("white")
 pen.penup()
 pen.hideturtle()
 pen.goto(0,260)
-pen.write("x:, y:".format(xball, yball), align="center", font=("Courier", 24, "normal"))
+pen.write("Score: 0", align="center", font=("Courier", 24, "normal"))
+
 
 #gravity
 gravity = 0.0001
@@ -97,10 +100,13 @@ while True:
         ball.sety(390)
         ball.dy *= -1 #this reverses the ball direction
 
+    #ball reset when hits the bottom axis
     if ball.ycor() < -390:
         ball.goto(randint(-350,350),randint(100,350))
-        #this reverses the ball direction
-        #not implemented properly, ball speeds up when resetting position
+        ball.dy = -0.15
+        player_score = 0
+        pen.clear()
+        pen.write("Score: {}".format(player_score), align="center", font=("Courier", 24, "normal"))
 
     if ball.xcor() > 390:
         ball.setx(390)
@@ -112,3 +118,8 @@ while True:
 
     if (ball.xcor() >= (__object__.xcor() - 40)) and (ball.xcor() <= (__object__.xcor() + 40)) and (ball.ycor() >= (__object__.ycor()-20)) and (ball.ycor() <= (__object__.ycor()+20)):
         ball.dy *=-1
+        ball.dx *= randint(-2,2)
+        player_score += 1
+        pen.clear()
+        pen.write("Score: {}".format(player_score), align="center", font=("Courier", 24, "normal"))
+        
