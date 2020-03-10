@@ -100,6 +100,7 @@ while True:
     if ball.ycor() < -390:
         ball.goto(randint(-350,350),randint(100,350))
         #this reverses the ball direction
+        #not implemented properly, ball speeds up when resetting position
 
     if ball.xcor() > 390:
         ball.setx(390)
