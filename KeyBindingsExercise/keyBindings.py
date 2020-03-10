@@ -1,4 +1,5 @@
 import turtle
+from random import randint
 
 #created window
 window = turtle.Screen()
@@ -15,14 +16,14 @@ __object__.color("white")
 __object__.speed(0)
 __object__.shapesize(stretch_wid=0.5, stretch_len=5)
 __object__.penup()
-__object__.goto(0,0)
+__object__.goto(0,-200)
 
 ball = turtle.Turtle()
 ball.shape("circle")
 ball.color("white")
 ball.penup()
 ball.speed(0)
-ball.goto(0,200)
+ball.goto(randint(-350,350),randint(-100,350))
 ball.dy = -0.15
 ball.dx = -0.15
 b = ball.pos()
@@ -97,8 +98,8 @@ while True:
         ball.dy *= -1 #this reverses the ball direction
 
     if ball.ycor() < -390:
-        ball.sety(-390)
-        ball.dy *= -1 #this reverses the ball direction
+        ball.goto(randint(-350,350),randint(100,350))
+        #this reverses the ball direction
 
     if ball.xcor() > 390:
         ball.setx(390)
