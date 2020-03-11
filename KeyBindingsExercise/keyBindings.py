@@ -23,6 +23,7 @@ ball.shape("circle")
 ball.color("white")
 ball.penup()
 ball.speed(0)
+ball.shapesize(stretch_wid= 5, stretch_len=5)
 ball.goto(randint(-350,350),randint(-100,350))
 ball.dy = -0.15
 ball.dx = -0.15
@@ -69,6 +70,21 @@ def objectLeft():
     x -= 20
     __object__.setx(x)
 
+def clicked(x,y):
+    x = ball.xcor()
+    y = ball.ycor()
+    ball.setx(x)
+    ball.sety(y)
+
+    if (ball.dy >= 0):
+        ball.dy *= 2
+    else:
+        ball.dy *= -1
+    
+    print(ball.dy)
+    
+
+
 
 # def isCollision(ball,__object__):
 
@@ -85,6 +101,7 @@ window.onkeypress(objectUp, "w")
 window.onkeypress(objectDown, "s")
 window.onkeypress(objectRight, "d")
 window.onkeypress(objectLeft, "a")
+
 
 
 #main loop
@@ -122,4 +139,5 @@ while True:
         player_score += 1
         pen.clear()
         pen.write("Score: {}".format(player_score), align="center", font=("Courier", 24, "normal"))
-        
+
+    ball.onclick(clicked)
