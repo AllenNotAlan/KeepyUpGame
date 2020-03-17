@@ -10,13 +10,13 @@ window.tracer(0)
 
 #object/s inside window
 
-__object__ = turtle.Turtle()
-__object__.shape("square")
-__object__.color("white")
-__object__.speed(0)
-__object__.shapesize(stretch_wid=0.5, stretch_len=5)
-__object__.penup()
-__object__.goto(0,-200)
+# __object__ = turtle.Turtle()
+# __object__.shape("square")
+# __object__.color("white")
+# __object__.speed(0)
+# __object__.shapesize(stretch_wid=0.5, stretch_len=5)
+# __object__.penup()
+# __object__.goto(0,-200)
 
 ball = turtle.Turtle()
 ball.shape("circle")
@@ -30,10 +30,10 @@ ball.dx = -0.15
 b = ball.pos()
 
 
+player_score = 0
+
 xball = 0
 yball = 0
-
-player_score = 0
 
 pen = turtle.Turtle()
 pen.speed(0)
@@ -71,27 +71,29 @@ def objectLeft():
     __object__.setx(x)
 
 def clicked(x,y):
+    global player_score
+    player_score += 1
     x = ball.xcor()
     y = ball.ycor()
     ball.setx(x)
     ball.sety(y)
 
+    pen.clear()
+    pen.write("Score: {}".format(player_score), align="center", font=("Courier", 24, "normal"))
+
     if (ball.dy >= 0):
         ball.dy *= 2
     else:
         ball.dy *= -1
-    
+
     print(ball.dy)
-    
 
+# def scored():
 
-
-# def isCollision(ball,__object__):
-
-#     if (ball.xcor() >= (__object__.xcor() - 20)) and (ball.xcor() <= (__object__.xcor() + 20)) and (ball.ycor() >= (__object__.ycor()-20)) and (ball.ycor() <= (__object__.ycor()+20)):
-#         return True
-#     else:
-#         return False
+#     player_score = 0
+#     player_score += 1
+#     pen.clear()
+#     pen.write("Score: {}".format(player_score), align="center", font=("Courier", 24, "normal"))
 
 
 #key bindings
@@ -133,11 +135,11 @@ while True:
         ball.setx(-390)
         ball.dx *= -1 #this reverses the ball direction
 
-    if (ball.xcor() >= (__object__.xcor() - 40)) and (ball.xcor() <= (__object__.xcor() + 40)) and (ball.ycor() >= (__object__.ycor()-20)) and (ball.ycor() <= (__object__.ycor()+20)):
-        ball.dy *=-1
-        ball.dx *= randint(-2,2)
-        player_score += 1
-        pen.clear()
-        pen.write("Score: {}".format(player_score), align="center", font=("Courier", 24, "normal"))
+    # if (ball.xcor() >= (__object__.xcor() - 40)) and (ball.xcor() <= (__object__.xcor() + 40)) and (ball.ycor() >= (__object__.ycor()-20)) and (ball.ycor() <= (__object__.ycor()+20)):
+    #     ball.dy *=-1
+    #     ball.dx *= randint(-2,2)
+    #     player_score += 1
+    #     pen.clear()
+    #     pen.write("Score: {}".format(player_score), align="center", font=("Courier", 24, "normal"))
 
     ball.onclick(clicked)
