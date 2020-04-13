@@ -8,16 +8,6 @@ window.setup(width = 800, height= 800)
 window.bgcolor("Black")
 window.tracer(0)
 
-#object/s inside window
-
-# __object__ = turtle.Turtle()
-# __object__.shape("square")
-# __object__.color("white")
-# __object__.speed(0)
-# __object__.shapesize(stretch_wid=0.5, stretch_len=5)
-# __object__.penup()
-# __object__.goto(0,-200)
-
 ball = turtle.Turtle()
 ball.shape("circle")
 ball.color("white")
@@ -28,6 +18,9 @@ ball.goto(randint(-350,350),randint(-100,350))
 ball.dy = -0.15
 ball.dx = -0.15
 b = ball.pos()
+
+#test variables
+ballMass = 0.4
 
 
 player_score = 0
@@ -88,23 +81,7 @@ def clicked(x,y):
 
     print(ball.dy)
 
-# def scored():
-
-#     player_score = 0
-#     player_score += 1
-#     pen.clear()
-#     pen.write("Score: {}".format(player_score), align="center", font=("Courier", 24, "normal"))
-
-
-#key bindings
-
 window.listen()
-window.onkeypress(objectUp, "w")
-window.onkeypress(objectDown, "s")
-window.onkeypress(objectRight, "d")
-window.onkeypress(objectLeft, "a")
-
-
 
 #main loop
 while True:
